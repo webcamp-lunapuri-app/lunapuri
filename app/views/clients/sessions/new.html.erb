@@ -1,26 +1,23 @@
-<h1>Log in</h1>
+<h2>ログイン</h2><br />
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<h3>会員の方はこちらからログイン</h3>
+
+<%= form_with model: @client, url: client_session_path, local: true do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    メールアドレス
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    パスワード
     <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+  </div><br />
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン", class:"btn btn-primary" %><br />
   </div>
 <% end %>
 
-<%= render "clients/shared/links" %>
+<h3>会員登録がお済みでない方</h3>
+
+<%= link_to 'こちら', new_client_registration_path %>　から新規登録を行ってください。
