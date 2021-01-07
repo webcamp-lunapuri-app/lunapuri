@@ -1,11 +1,11 @@
-<h2>製品新規登録</h2>
+<h2>商品新規登録</h2>
 
 <%= form_with model:@new_product,url: admin_products_path, local:true do |f| %>
-<h4>製品画像</h4>
+<h4>商品画像</h4>
 <%= f.attachment_field :image %>
-<h4>製品名</h4>
+<h4>商品名</h4>
 <%= f.text_field :name %>
-<h4>製品説明</h4>
+<h4>商品説明</h4>
 <%= f.text_area :introduction %>
 <h4>ジャンル</h4>
 <%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %>
