@@ -1,11 +1,11 @@
 <h2>マイページ</h2><br />
 
 <strong>登録情報</strong>
-<%= link_to '編集する', edit_client_path %><br />
+<%= link_to '編集する', edit_client_path, class:"btn btn-sm btn-outline-primary" %><br />
 
 <div>
   <p>氏名　<%= @client.last_name %>　<%= @client.first_name %></p>
-  <p>カナ　<%= @client.last_name %>　<%= @client.first_name %></p>
+  <p>カナ　<%= @client.last_name_kana %>　<%= @client.first_name_kana %></p>
   <p>郵便番号　<%= @client.postal_code %></p>
   <p>住所　<%= @client.address %></p>
   <p>電話番号　<%= @client.tel %></p>
@@ -13,7 +13,7 @@
 </div>
 
 <strong>配送先</strong>
-<%= link_to '一覧を見る', deliveries_path %><br />
+<%= link_to '一覧を見る', deliveries_path, class:"btn btn-sm btn-outline-secondary" %><br />
 
 <strong>注文履歴</strong>
-<%= link_to '一覧を見る', orders_path %>
+<%= link_to '一覧を見る', orders_path, class:"btn btn-sm btn-outline-secondary" %>
