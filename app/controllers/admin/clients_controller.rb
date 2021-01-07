@@ -1,8 +1,10 @@
 class Admin::ClientsController < ApplicationController
   def index
+    @clients = Client.all
   end
 
   def show
+    @client = client.find(params[:id])
   end
 
   def edit
@@ -10,4 +12,8 @@ class Admin::ClientsController < ApplicationController
 
   def update
   end
+  
+  private
+  def client_params
+    params.require(:client).permit()
 end

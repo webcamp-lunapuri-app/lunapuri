@@ -17,10 +17,12 @@
        <%= product.name %>
       <% end %>
     </td>
-    <td><%= product.price %></td>
     <td></td>
-    <td><%= product.genre_id %></td>
-    <td><%= product.is_sales_status %></td>
+    <td><%= product.price %></td>
+    <td><%= product.genre.name %></td>
+    <td>
+      <%= product.is_sales_status %>
+      </td>
   </tr>
   <% end %>
 </table>

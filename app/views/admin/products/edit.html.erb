@@ -1,2 +1,20 @@
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<h4>商品編集画面</h4>
+
+<%= form_with model: @product, url: admin_product_path, local:true do |f| %>
+  <h4>商品画像</h4>
+  <%= f.attachment_field :image %>
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+  <h4>商品説明</h4>
+  <%= f.text_area :introduction %>
+  <h4>ジャンル</h4>
+  <%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %>
+  <h4>税抜価格</h4>
+  <%= f.number_field :price %><span>円</span>
+  
+  <h4>販売ステータス</h4>
+  <%= f.radio_button :is_sales_status,"true" %>販売中
+  <%= f.radio_button :is_sales_status, "false" %>販売停止中
+  
+<%= f.submit'変更を保存' %>
+<% end %>
