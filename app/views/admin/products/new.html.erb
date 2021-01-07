@@ -13,8 +13,8 @@
 <%= f.number_field :price %><span>円</span>
 
 <h4>販売ステータス</h4>
-<%= f.radio_button :is_sales_status,"TRUE" %>販売中
-<%= f.radio_button :is_sales_status, "FALSE" %>販売停止中
+<%= f.radio_button :is_sales_status,"true" %>販売中
+<%= f.radio_button :is_sales_status, "false" %>販売停止中
 
 <%= f.submit'新規作成' %>
 <% end %>
