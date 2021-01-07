@@ -1,2 +1,19 @@
-<h1>Public::Clients#show</h1>
-<p>Find me in app/views/public/clients/show.html.erb</p>
+<h2>マイページ</h2><br />
+
+<strong>登録情報</strong>
+<%= link_to '編集する', edit_client_path %><br />
+
+<div>
+  <p>氏名　<%= @client.last_name %>　<%= @client.first_name %></p>
+  <p>カナ　<%= @client.last_name %>　<%= @client.first_name %></p>
+  <p>郵便番号　<%= @client.postal_code %></p>
+  <p>住所　<%= @client.address %></p>
+  <p>電話番号　<%= @client.tel %></p>
+  <p>メールアドレス　<%= @client.email %></p>
+</div>
+
+<strong>配送先</strong>
+<%= link_to '一覧を見る', deliveries_path %><br />
+
+<strong>注文履歴</strong>
+<%= link_to '一覧を見る', orders_path %>
