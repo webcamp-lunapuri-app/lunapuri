@@ -4,16 +4,22 @@ class Admin::ClientsController < ApplicationController
   end
 
   def show
-    @client = client.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   def edit
+    @client = Client.find(params[:id])
   end
 
   def update
+    @client = Client.find(params[:id])
+    @client.update
+    redirect_to admin_client(@client.id)
   end
-  
+
   private
   def client_params
-    params.require(:client).permit()
+    params.require(:client).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
+      :email, :encrypted_password, :postal_code, :address, :tel, :is_unsubscribe_flag)
+  end
 end

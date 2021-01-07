@@ -1,3 +1,22 @@
 <h4>会員情報一覧</h4>
 
-<
+<table>
+  <tr>
+    <td>会員ID</td>
+    <td>会員氏名</td>
+    <td>メールアドレス</td>
+    <td>ステータス</td>
+  </tr>
+  <% @clients.each do |client| %>
+  <tr>
+    <td><%= client.id %></td>
+    <td>
+      <%= link_to admin_client_path(client.id) do %>
+        <%= client.last_name+client.first_name %>
+      <% end %>
+    </td>
+    <td><%= client.email %></td>
+    <td><%= client.is_unsubscribe_flag %></td>
+  </tr>
+  <% end %>
+</table>

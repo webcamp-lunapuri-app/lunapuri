@@ -1,2 +1,20 @@
-<h1>Admin::Clients#show</h1>
-<p>Find me in app/views/admin/clients/show.html.erb</p>
+<h2>会員詳細画面</h2>
+
+  <h4>会員ID</h4>
+  <%= @client.id %>
+  <h4>氏名</h4>
+  <%= @client.last_name+@client.first_name %>
+  <h4>フリガナ</h4>
+  <%= @client.last_name_kana+@client.first_name_kana %>
+  <h4>郵便番号</h4>
+  <%= @client.postal_code %>
+  <h4>住所</h4>
+  <%= @client.address %>
+  <h4>電話番号</h4>
+  <%= @client.tel %>
+  <h4>メールアドレス</h4>
+  <%= @client.email %>
+  <h4>会員ステータス</h4>
+  <%= @client.is_unsubscribe_flag %>
+
+  <%= link_to '会員情報の編集', edit_admin_client_path(@client.id) %>
