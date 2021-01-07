@@ -5,7 +5,7 @@
 
 <h2>新着商品</h2>
 <% @products.first(4).each do |product| %>
-  <%= attachment_image_tag product, :image, format: 'jpeg', size: "60x100" %>
+  <%= attachment_image_tag product, :image, format: 'jpeg', size: "120x100" %>
   <h6><%= link_to product.name, product_path(product) %></h6>
   <h6>¥<%= product.price %></h6>
 <% end %>
