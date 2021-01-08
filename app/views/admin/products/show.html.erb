@@ -11,7 +11,7 @@
   <h4>税抜価格</h4>
   <%= @product.price %>
   <h4>税込価格</h4>
-  <%= @product.price.to_i*1.1 %>
+  <%= (@product.price.rationalize*1.1r).to_i %>
   <h4>販売ステータス</h4>
   <%= @product.is_sales_status %>
 
