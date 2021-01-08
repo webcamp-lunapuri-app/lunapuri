@@ -4,9 +4,9 @@ class Client < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :deliveries
-  has_many :orders
-  has_many :cart_items
+  has_many :deliveries, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
 
   enum is_unsubscribe_flag: {Available: false, Invalid: true}
 

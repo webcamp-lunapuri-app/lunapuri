@@ -1,17 +1,47 @@
 <h2>ショッピングカート</h2>
+<%= link_to destroy_all_cart_items_path, method: :delete, local: true do %>
+  <i>カートを空にする</i>
+<% end %>
 <table>
   <tr>
     <td>商品名</td>
     <td>単価（税込）</td>
     <td>数量</td>
     <td>小計</td>
+    <td></td>
   </tr>
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td><%= cart_item.product.name %></td>
     <td><%= cart_item.product.price %></td>
-    <td><%= cart_item.count %></td>
+    <td>
+      <%= form_with model: cart_item, local:true do |f| %>
+        <%= f.number_field :count, min: 1 %>
+        <%= f.submit "変更" %>
+      <% end %>
+    </td>
     <td><%= cart_item.product.price * cart_item.count %></td>
+    <td>
+      <%= link_to cart_item_path(cart_item.id), method: :delete, local: true do %>
+        <i>削除する</i>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
+
+<%= link_to products_path, local: true do %>
+  <i>買い物を続ける</i>
+<% end %>
+
+<table>
+  <tr>
+    <td>合計金額の算出方法</td>
+    <td></td>
+  </tr>
+</table>
+
+<%= link_to new_order_path, local: true do %>
+  <i>情報入力に進む</i>
+<% end %>
+
