@@ -1,20 +1,37 @@
-<h2>会員詳細画面</h2>
-
-  <h4>会員ID</h4>
-  <%= @client.id %>
-  <h4>氏名</h4>
-  <%= @client.last_name+@client.first_name %>
-  <h4>フリガナ</h4>
-  <%= @client.last_name_kana+@client.first_name_kana %>
-  <h4>郵便番号</h4>
-  <%= @client.postal_code %>
-  <h4>住所</h4>
-  <%= @client.address %>
-  <h4>電話番号</h4>
-  <%= @client.tel %>
-  <h4>メールアドレス</h4>
-  <%= @client.email %>
-  <h4>会員ステータス</h4>
-  <%= @client.is_unsubscribe_flag %>
-
-  <%= link_to '会員情報の編集', edit_admin_client_path(@client.id) %>
+<h4>会員詳細画面</h4>
+  <table>
+  <tr>
+    <th><h6>会員ID</h6></th>
+    <th><%= @client.id %></th>
+  </tr>
+  <tr>
+    <th><h6>氏名</h6></th>
+    <th><%= @client.last_name+@client.first_name %></th>
+  </tr>
+  <tr>
+    <th><h6>フリガナ</h6></th>
+    <th><%= @client.last_name_kana+@client.first_name_kana %></th>
+  </tr>
+  <tr>
+    <th><h6>郵便番号</h6></th>
+    <th><%= @client.postal_code %></th>
+  </tr>
+  <tr>
+    <th><h6>住所</h6></th>
+    <th><%= @client.address %></th>
+  </tr>
+  <tr>
+    <th><h6>電話番号</h6></th>
+    <th><%= @client.tel %></th>
+  </tr>
+  <tr>
+    <th><h6>メールアドレス</h6></th>
+    <th><%= @client.email %></th>
+  </tr>  <tr>
+    <th><h6>会員ステータス</h6></th>
+    <th><%= @client.is_unsubscribe_flag %></th>
+  </tr>
+  <tr>
+    <th><%= link_to '会員情報の編集', edit_admin_client_path(@client.id) %></th>
+  </tr>
+</table>
