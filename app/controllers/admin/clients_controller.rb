@@ -13,8 +13,8 @@ class Admin::ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    @client.update
-    redirect_to admin_client(@client.id)
+    @client.update(client_params)
+    redirect_to admin_client_path(@client.id)
   end
 
   private
