@@ -1,20 +1,33 @@
 <h4>商品編集画面</h4>
-
+<table>
 <%= form_with model: @product, url: admin_product_path, local:true do |f| %>
-  <h4>商品画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
-  <h4>商品説明</h4>
-  <%= f.text_area :introduction %>
-  <h4>ジャンル</h4>
-  <%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %>
-  <h4>税抜価格</h4>
-  <%= f.number_field :price %><span>円</span>
-  
-  <h4>販売ステータス</h4>
-  <%= f.radio_button :is_sales_status,"true" %><p>販売中</p>
-  <%= f.radio_button :is_sales_status, "false" %><p>販売停止中</p>
-  
-<%= f.submit'変更を保存' %>
+  <tr>
+    <th><h6>商品画像</h6></th>
+    <th><%= f.attachment_field :image %></th>
+  </tr>
+  <tr>
+    <th><h6>商品名</h6></th>
+    <th><%= f.text_field :name %></th>
+  </tr>
+  <tr>
+    <th><h6>商品説明</h6></th>
+    <th><%= f.text_area :introduction %></th>
+  </tr>
+  <tr>
+    <th><h6>ジャンル</h6></th>
+    <th><%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %></th>
+  </tr>
+  <tr>
+    <th><h6>税抜価格</h6></th>
+    <th><%= f.number_field :price %><span>円</span></th>
+  </tr>
+  <tr>
+    <th><h6>販売ステータス</h6></th>
+    <th><%= f.radio_button :is_sales_status,"true" %><p>販売中</p></th>
+    <th><%= f.radio_button :is_sales_status, "false" %><p>販売停止中</p></th>
+  </tr>
+  <tr>
+    <th><%= f.submit '変更を保存',class:"btn btn-sm btn-success" %></th>
+  </tr>
 <% end %>
+</table>
