@@ -1,18 +1,40 @@
 <h4>商品詳細</h4>
 
-  <h4>商品画像</h4>
-  <%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x200" %>
-  <h4>商品名</h4>
-  <%= @product.name %>
-  <h4>商品説明</h4>
-  <%= @product.introduction %>
-  <h4>ジャンル</h4>
-  <%= @product.genre.name%>
-  <h4>税抜価格</h4>
-  <%= @product.price %>
-  <h4>税込価格</h4>
-  <%= (@product.price.rationalize*1.1r).to_i %>
-  <h4>販売ステータス</h4>
-  <%= @product.is_sales_status %>
+<table>
+  <tr>
+    <th><h6>商品画像</h6></th>
+    <th><%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x200" %></th>
+  </tr>
+  <tr>
+    <th><h6>商品名</h6></th>
+    <th><%= @product.name %></th>
+  </tr>
+  <tr>
+    <th><h6>商品説明</h6></th>
+    <th><%= @product.introduction %></th>
+  </tr>
+  <tr>
+    <th><h6>ジャンル</h6></th>
+    <th><%= @product.genre.name%></th>
+  </tr>
+  <tr>
+    <th><h6>税抜価格</h6></th>
+    <th><%= @product.price %><span>円</span></th>
+  </tr>
+  <tr>
+    <th><h6>税込価格</h6></th>
+    <th><%= (@product.price.rationalize*1.1r).to_i %><span>円</span></th>
+  </tr>
+  <tr>
+    <th><h6>販売ステータス</h6></th>
+    <th><%= @product.is_sales_status %></th>
+  </tr>
+  <tr>
+    <th><%= link_to '商品詳細の編集', edit_admin_product_path(@product.id),class:"btn btn-sm btn-success" %></th>
+  </tr>
+</table>
 
-  <%= link_to '商品詳細の編集', edit_admin_product_path(@product.id) %>
+
+
+
+

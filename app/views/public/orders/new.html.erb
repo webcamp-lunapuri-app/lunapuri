@@ -1,2 +1,27 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<h2>注文情報入力</h2>
+<%= form_with model: @order, url: confirm_orders_path(@order), local:true do |f| %>
+<h4>支払方法</h4>
+    <%= f.radio_button :payment_methods, :クレジットカード %>
+    <%= f.label :クレジットカード %><br/>
+    <%= f.radio_button :payment_methods, :銀行振込 %>
+    <%= f.label :銀行振込 %>
+
+<h4>お届け先</h4>
+<%= f.radio_button :address_option, 0 %>ご自身の住所<br/>
+<h6><span>〒</span><%= current_client.postal_code + current_client.address + current_client.last_name + current_client.first_name %></h6>
+
+<%= f.radio_button :address_option, 1 %>登録済住所から選択<br/>
+<%= f.collection_select(:delivery_id, @deliveries, :id, :full_delivery_info, {prompt: "配送先を選択してください"}) %><br/>
+
+<%= f.radio_button :address_option, 2 %>新しいお届け先<br/>
+<h6>郵便番号(ハイフンなし)　<%= f.text_field :delivery_postal_code %></h6>
+<h6>住所<%= f.text_field :delivery_address %></h6>
+<h6>宛名<%= f.text_field :delivery_name %></h6>
+
+<%= f.hidden_field :delivery_charge, value: 800 %>
+<%= f.hidden_field :total_amounts, value: @sum %>
+<%= f.hidden_field :order_status, value: :入金待ち %>
+
+<%= f.submit '確認画面にへ進む' %>
+<% end %>
+

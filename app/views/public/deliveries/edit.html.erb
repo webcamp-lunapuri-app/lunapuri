@@ -1,2 +1,16 @@
-<h1>Public::Deliveries#edit</h1>
-<p>Find me in app/views/public/deliveries/edit.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+    <h2>配送先編集</h2>
+      <%= form_with model:@delivery, local: true do |f| %>
+        <%= f.hidden_field :client_id, value: @client.id %>
+          <table>
+            <tr><th>郵便番号(ハイフンなし)</th><th><%= f.text_field :postal_code %></th></tr>
+            <tr><th>住所</th><th><%= f.text_field :address %></th></tr>
+            <tr><th>宛名</th><th><%= f.text_field :name, size:"40x1" %></th></tr>
+            <tr><th><%= f.submit '新規登録', class:"btn btn-sm btn-success" %></th></tr>
+          </table>
+      <% end %>
+    </div>
+  </div>
+</div>
