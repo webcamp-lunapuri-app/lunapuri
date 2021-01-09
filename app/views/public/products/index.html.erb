@@ -1,20 +1,19 @@
-<div class="container mt-5">
-<h2>商品一覧（全<%= @products.count %>件）</h2>
+<div class="container">
+<h4 class="ml-5 mt-4 mb-4"><strong>商品一覧</strong>（全<%= @products.count %>件）</h4>
 <div class="row">
-    <% @products.first(4).each do |product| %>
+    <% @products.each do |product| %>
       <div class="col-3">
-        <table>
+        <table class="table-sm">
           <thead>
-            <tr><td><%= attachment_image_tag product, :image, format: 'jpeg', size: "100x100" %></td></tr>
+            <tr><td><%= attachment_image_tag product, :image, format: 'jpeg', size: "120x100" %></td></tr>
           </thead>
           <tbody>
-            <tr><td><%= link_to product.name, product_path(product) %></tr></td>
-            <tr><td>¥<%= product.price %></tr></td>
+            <tr><td><strong><%= link_to product.name, product_path(product) %></strong></tr></td>
+            <tr><td><strong>¥<%= product.price %></strong></tr></td>
           </tbody>
         </table>
       </div>
     <% end %>
   </div>
-  <div class="text-center"><%= link_to "全ての商品を⾒る >", products_path %></div>
 </div>
 <%= paginate @products %>
