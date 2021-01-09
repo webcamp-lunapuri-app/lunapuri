@@ -13,4 +13,8 @@ class Client < ApplicationRecord
   def unsubscribe_for_authentication?
     super && (self.is_unsubscribe_flag === "Available")
   end
+  
+  def full_name
+    self.last_name + self.first_name
+  end
 end
