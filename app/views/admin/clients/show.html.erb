@@ -33,5 +33,6 @@
   </tr>
   <tr>
     <th><%= link_to '会員情報の編集', edit_admin_client_path(@client.id) %></th>
+    <th><%= link_to'この会員の注文一覧を見る',admin_detail_path(@client.id) %></th>
   </tr>
 </table>

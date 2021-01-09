@@ -1,2 +1,79 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h4>注文詳細画面</h4>
+<table>
+    <tr>
+        <th>購入者</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>注文日</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>配送先</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>支払方法</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>注文ステータス</th>
+        <th></th>
+    </tr>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>単価</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @order_items.each do |order_item| %>
+        <tr>
+            <th><%= order_item.product.name %></th>
+            <th><%= (order_item.purchase_price.rationalize*1.1r)to_i %><p>円</p></th>
+            <th><%= order_item.count %></th>
+            <th><%= (order_item.purchase_price.rationalize*order_item.count.rationalize*1.1r)to_i %><p>円</p></th>
+            <th><%= order_item.production_status %></th>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<table>
+    <% @orders.zip( @order_items).each do |order,order_item| %>
+    <tr>
+        <th>商品合計</th>
+        <th><p>円</p></th>
+    </tr>
+    <tr>
+        <th>送料</th>
+        <th><% order.delivery_charge %><p>円</p></th>
+    </tr>
+    <tr>
+        <th>請求金額合計</th>
+        <th><% order.total_amounts %><p>円</p></th>
+    </tr>
+    <% end %>
+</table>
+
+<% @sum = 0 %>
+<% @cart_items.each do |cart_item| %>
+    <%= cart_item.product.name %>
+    <%= (cart_item.product.price.rationalize*1.1r).to_i %>
+    <%= form_with model: cart_item, local:true do |f| %>
+    <%= f.number_field :count, min: 1 %>
+        <%= f.submit "変更" %>
+    <% end %>
+
+    <%= (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %>
+    <%= link_to cart_item_path(cart_item.id), method: :delete, local: true do %>
+        削除する
+    <% end %>
+    <% @sum += (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %>
+<% end %>
+
