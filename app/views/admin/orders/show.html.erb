@@ -2,25 +2,27 @@
 <table>
     <tr>
         <th>購入者</th>
-        <th></th>
+        <th><% @order.client.last_name+@order.client.first_name %></th>
     </tr>
     <tr>
         <th>注文日</th>
-        <th></th>
+        <th><%= @order.created_at %></th>
     </tr>
     <tr>
         <th>配送先</th>
-        <th></th>
+        <th><%= @order.delivery_postal_code %><br />
+            <%= @order.delivery_address %></th>
     </tr>
     <tr>
         <th>支払方法</th>
-        <th></th>
+        <th><%= @order.payment_methods %></th>
     </tr>
     <tr>
         <th>注文ステータス</th>
-        <th></th>
+        <th><%= @order.order_status %></th>
     </tr>
 </table>
+
 <table>
     <thead>
         <tr>
@@ -32,48 +34,31 @@
         </tr>
     </thead>
     <tbody>
-        <% @order_items.each do |order_item| %>
+        <%# @order_items.each do |order_item| %>
         <tr>
-            <th><%= order_item.product.name %></th>
-            <th><%= (order_item.purchase_price.rationalize*1.1r)to_i %><p>円</p></th>
-            <th><%= order_item.count %></th>
-            <th><%= (order_item.purchase_price.rationalize*order_item.count.rationalize*1.1r)to_i %><p>円</p></th>
-            <th><%= order_item.production_status %></th>
+            <th><%#= order_item.product.name %></th>
+            <th><%#= (order_item.purchase_price.rationalize*1.1r)to_i %><span>円</span></th>
+            <th><%#= order_item.count %></th>
+            <th><%#= (order_item.purchase_price.rationalize*order_item.count.rationalize*1.1r)to_i %><span>円</span></th>
+            <th><%#= order_item.production_status %></th>
         </tr>
-        <% end %>
+        <%# end %>
     </tbody>
 </table>
 
 <table>
-    <% @orders.zip( @order_items).each do |order,order_item| %>
     <tr>
         <th>商品合計</th>
-        <th><p>円</p></th>
+        <th><%= (@order.total_amounts.rationalize-@order.delivery_charge.rationalize).to_i %><span>円</span></th>
     </tr>
     <tr>
         <th>送料</th>
-        <th><% order.delivery_charge %><p>円</p></th>
+        <th><%= @order.delivery_charge %><span>円</span></th>
     </tr>
     <tr>
         <th>請求金額合計</th>
-        <th><% order.total_amounts %><p>円</p></th>
+        <th><%= @order.total_amounts %><span>円</span></th>
     </tr>
-    <% end %>
 </table>
 
-<% @sum = 0 %>
-<% @cart_items.each do |cart_item| %>
-    <%= cart_item.product.name %>
-    <%= (cart_item.product.price.rationalize*1.1r).to_i %>
-    <%= form_with model: cart_item, local:true do |f| %>
-    <%= f.number_field :count, min: 1 %>
-        <%= f.submit "変更" %>
-    <% end %>
-
-    <%= (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %>
-    <%= link_to cart_item_path(cart_item.id), method: :delete, local: true do %>
-        削除する
-    <% end %>
-    <% @sum += (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %>
-<% end %>
 
