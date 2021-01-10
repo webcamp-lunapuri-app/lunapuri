@@ -29,7 +29,6 @@
   <tr><td>お届け先</td><td><span>〒</span><%= @order.delivery_postal_code + @order.delivery_address + @order.delivery_name %></td><tr>
 </table>
 
-
 <%= form_with model: @order, local: true do |f| %>
   <%= f.hidden_field :client_id %>
   <%= f.hidden_field :delivery_postal_code %>
