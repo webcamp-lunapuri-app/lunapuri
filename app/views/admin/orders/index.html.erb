@@ -20,7 +20,7 @@
        <%= order.client.last_name+order.client.first_name %>
     </td>
     <td>
-      <%#= order. %>
+      <%#= Order_item.where(order_id: order.id).sum(:count) %>
     </td>
     <td>
       <%= order.order_status %>
