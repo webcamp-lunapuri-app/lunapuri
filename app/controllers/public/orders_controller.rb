@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  # before_action :address_option, only: [:confirm]
+  # before_action :authenticate_client!
   def new
     @order = Order.new
     @deliveries = Delivery.all
@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new(order_params)
+    @order.client_id = current_client.id
     @cart_items = current_client.cart_items
     if params[:order][:address_option] == "0"
       @order.delivery_postal_code = current_client.postal_code  
@@ -31,7 +32,16 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
+    # @order_item = OrderItem.new(order_item_params)
     # @cart_items = CartItem.where(client_id: current_client.id).order(created_at: :desc)
+    # @order_item.client_id = current_client.id
+    # @cart_item = CartItem.find(params[:id])
+    # @order_item.product_id = @cart_item.product_id
+    # @order_item.purchase_price = @cart_item.product_id.price * 1.1
+    # @order_item.count = @cart_item.count
+    # @order_item.save
+    
+    # redirect_to request.referer
   end
 
   def index
@@ -48,6 +58,14 @@ class Public::OrdersController < ApplicationController
       :delivery_charge, :total_amounts, 
       :payment_methods, :order_status,
       :delivery_id
+      )
+  end
+  
+  def order_item_params
+    params.require(:order_item).permit(
+      :order_id, :product_id,
+      :purchase_price, :count,
+      :production_status
       )
   end
 end
