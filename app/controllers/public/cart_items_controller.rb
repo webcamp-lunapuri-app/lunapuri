@@ -1,6 +1,5 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_client!
-  
   def index
     @cart_items = CartItem.where(client_id: current_client.id).order(created_at: :desc)
   end
@@ -25,8 +24,8 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy_all
-    # current_clientのカート商品のみ全削除したい
-    CartItem.destroy_all
+    @cart_items = current_client.cart_items.all
+    current_client.cart_items.destroy_all
     redirect_to request.referer
   end
   
