@@ -22,7 +22,11 @@
     <td><%= product.price %></td>
     <td><%= product.genre.name %></td>
     <td>
-      <%= product.is_sales_status %>
+      <% if product.is_sales_status %>
+          販売中
+      <% elsif %>
+          販売停止中
+      <% end %>
       </td>
   </tr>
   <% end %>
