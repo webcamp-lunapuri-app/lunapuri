@@ -1,7 +1,8 @@
 class Admin::OrdersController < ApplicationController
   def index
+    Order.joins(:order_items)
     @orders = Order.all
-    # @order_items = Order_item.all
+    # @order_items = OrderItem.all
   end
 
   def detail
@@ -10,7 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    # @order_items = Order_item.where(order_id: params[:id])
+    @order_items = OrderItem.where(order_id: @order.id)
   end
 
   def edit
@@ -21,7 +22,7 @@ class Admin::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).premit(:client_id,:delivery_postal_code, :delivery_address,
+    params.require(:order).permit(:client_id,:delivery_postal_code, :delivery_address,
     :delivery_name, :delivery_charge, :total_amounts, :payment_methods,:order_status)
   end
 end
