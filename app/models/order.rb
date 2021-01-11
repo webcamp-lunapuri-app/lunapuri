@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  belongs_to :client
+  belongs_to :client, foreign_key: 'client_id'
   has_many :order_items, dependent: :destroy
   attr_accessor :delivery_id
 

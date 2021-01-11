@@ -10,18 +10,18 @@
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td><%= cart_item.product.name %></td>
-    <td><%= (cart_item.product.price.rationalize*1.1r).to_i %></td>
+    <td><%= (cart_item.product.price.rationalize*1.1r).to_i.to_s(:delimited) %></td>
     <td><%= cart_item.count %></td>
-    <td><%= (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %></td>
+    <td><%= ((cart_item.product.price.rationalize*1.1r).to_i * cart_item.count).to_s(:delimited) %></td>
   </tr>
   <% @sum += (cart_item.product.price.rationalize*1.1r).to_i * cart_item.count %>
   <% end %>
 </table>
 
 <table>
-  <tr><td>送料</td><td><%= @order.delivery_charge %></td><tr>
-  <tr><td>商品合計</td><td><%= @sum %></td><tr>
-  <tr><td>請求金額</td><td><%= @order.delivery_charge + @sum %></td><tr>
+  <tr><td>送料</td><td><%= @order.delivery_charge.to_s(:delimited) %></td><tr>
+  <tr><td>商品合計</td><td><%= @sum.to_s(:delimited) %></td><tr>
+  <tr><td>請求金額</td><td><%= (@order.delivery_charge + @sum).to_s(:delimited) %></td><tr>
 </table>
 
 <table>
@@ -38,5 +38,6 @@
   <%= f.hidden_field :total_amounts, value: @order.delivery_charge + @sum %>
   <%= f.hidden_field :payment_methods %>
   <%= f.hidden_field :order_status %>
+  <%= f.hidden_field :address_option, value: params[:order][:address_option] %>
   <%= f.submit '注文を確定する' %>
 <% end %>
