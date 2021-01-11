@@ -43,9 +43,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_client.orders.all.order(created_at: :desc)
+    @orders.joins(:order_items)
+    @products = Product.all.includes(:order_items)
   end
 
   def show
+    @order = Order.find(params[:id])
+    @products = Product.all.includes(:order_items)
   end
   
   private
