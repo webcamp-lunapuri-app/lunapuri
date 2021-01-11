@@ -9,7 +9,7 @@
           </thead>
           <tbody>
             <tr><td><strong><%= link_to product.name, product_path(product) %></strong></tr></td>
-            <tr><td><strong>¥<%= product.price %></strong></tr></td>
+            <tr><td><strong>¥<%= (product.price.rationalize*1.1r).to_i.to_s(:delimited) %></strong></tr></td>
           </tbody>
         </table>
       </div>
