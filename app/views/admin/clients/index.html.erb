@@ -16,7 +16,12 @@
       <% end %>
     </td>
     <td><%= client.email %></td>
-    <td><%= client.is_unsubscribe_flag %></td>
+    <td><% if client.is_unsubscribe_flag == "Available" %>
+            有効会員
+        <% elsif client.is_unsubscribe_flag == "Invalid" %>
+            無効会員
+        <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
