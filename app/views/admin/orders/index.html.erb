@@ -13,14 +13,14 @@
   <tr>
     <td>
       <%= link_to admin_order_path(order.id) do %>
-        <%= order.created_at %>
+        <%= order.created_at.to_s(:datetime_jp) %>
       <% end %>
     </td>
     <td>
        <%= order.client.last_name+order.client.first_name %>
     </td>
     <td>
-      <%#= Order_item.where(order_id: order.id).sum(:count) %>
+      <%= order.order_items.sum(:count) %>
     </td>
     <td>
       <%= order.order_status %>

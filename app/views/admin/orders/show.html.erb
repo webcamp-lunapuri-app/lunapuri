@@ -2,11 +2,11 @@
 <table>
     <tr>
         <th>購入者</th>
-        <th><% @order.client.last_name+@order.client.first_name %></th>
+        <th><%= @order.client.last_name+@order.client.first_name %></th>
     </tr>
     <tr>
         <th>注文日</th>
-        <th><%= @order.created_at %></th>
+        <th><%= @order.created_at.to_s(:datetime_jp)%></th>
     </tr>
     <tr>
         <th>配送先</th>
@@ -19,7 +19,12 @@
     </tr>
     <tr>
         <th>注文ステータス</th>
-        <th><%= @order.order_status %></th>
+        <th>
+            <%= form_with model: @order, url:admin_order_path, local:true do |f| %>
+                <%= f.select :order_status ,Order.order_statuses.keys.to_a,{} %>
+                <%= f.submit'更新' %>
+            <% end %>
+        </th>
     </tr>
 </table>
 
@@ -27,22 +32,26 @@
     <thead>
         <tr>
             <th>商品名</th>
-            <th>単価</th>
+            <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
             <th>制作ステータス</th>
         </tr>
     </thead>
     <tbody>
-        <%# @order_items.each do |order_item| %>
+        <% @order_items.each do |order_item| %>
         <tr>
-            <th><%#= order_item.product.name %></th>
-            <th><%#= (order_item.purchase_price.rationalize*1.1r)to_i %><span>円</span></th>
-            <th><%#= order_item.count %></th>
-            <th><%#= (order_item.purchase_price.rationalize*order_item.count.rationalize*1.1r)to_i %><span>円</span></th>
-            <th><%#= order_item.production_status %></th>
-        </tr>
-        <%# end %>
+            <th><%= order_item.product.name %></th>
+            <th><%= (order_item.purchase_price).to_i %><span>円</span></th>
+            <th><%= order_item.count %></th>
+            <th><%= (order_item.purchase_price.rationalize*order_item.count.rationalize).to_i %><span>円</span></th>
+            <th>
+                <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch, local:true do |f| %>
+
+                <%= f.select :production_status, OrderItem.production_statuses.keys.to_a,{} %>
+                <%= f.submit '更新' %>
+                <% end %>
+        <% end %>
     </tbody>
 </table>
 
