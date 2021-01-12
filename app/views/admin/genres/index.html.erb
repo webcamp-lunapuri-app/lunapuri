@@ -19,6 +19,13 @@
     <td>
       <%= link_to "編集",edit_admin_genre_path(genre) %>
     </td>
+    <td>
+      <% if genre.is_active %>
+            製造中
+        <% elsif %>
+            製造停止
+        <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
