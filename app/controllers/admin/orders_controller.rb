@@ -1,8 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def index
     Order.joins(:order_items)
-    @orders = Order.all
-    # @order_items = OrderItem.all
+    @orders = Order.page(params[:page]).reverse_order
   end
 
   def detail
