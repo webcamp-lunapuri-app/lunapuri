@@ -27,7 +27,12 @@
   </tr>
   <tr>
     <th><h6>販売ステータス</h6></th>
-    <th><%= @product.is_sales_status %></th>
+    <th><% if @product.is_sales_status %>
+              販売中
+        <% elsif %>
+              販売停止中
+        <% end %>
+        </th>
   </tr>
   <tr>
     <th><%= link_to '商品詳細の編集', edit_admin_product_path(@product.id),class:"btn btn-sm btn-success" %></th>
