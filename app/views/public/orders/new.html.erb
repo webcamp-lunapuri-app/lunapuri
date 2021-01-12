@@ -24,19 +24,14 @@
             <tr><td>郵便番号(ハイフンなし)　</td><td><%= f.text_field :delivery_postal_code %></td></tr>
             <tr><td>住所</td><td><%= f.text_field :delivery_address, size:"50x1" %></td></tr>
             <tr><td>宛名</td><td><%= f.text_field :delivery_name %></td></tr>
+            <%= f.hidden_field :delivery_charge, value: 800 %>
+            <%= f.hidden_field :total_amounts, value: @sum %>
+            <%= f.hidden_field :order_status, value: :入金待ち %>
+            <tr><td></td><td><%= f.submit '確認画面へ進む', class:"btn btn-outline-primary" %></td></tr>
+      <% end %>
           </table>
         </div>
-          <%= f.hidden_field :delivery_charge, value: 800 %>
-          <%= f.hidden_field :total_amounts, value: @sum %>
-          <%= f.hidden_field :order_status, value: :入金待ち %>
     </div>
   </div>
 </div>
-<div class="container d-flex justify-content-center mt-4">
-  <div class="row">
-    <div class="col-10 offset-1 text-nowrap">
-      <%= f.submit '確認画面へ進む', class:"btn btn-outline-primary" %>
-    </div>
-  </div>
-</div>
-      <% end %>
+
