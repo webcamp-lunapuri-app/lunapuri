@@ -5,10 +5,10 @@
       <%= form_with model: @order, url: confirm_orders_path(@order), local:true do |f| %>
       <h6 class="mt-3"><strong>支払方法</strong></h6>
         <div class="ml-4">
-            <%= f.radio_button :payment_methods, :クレジットカード %>
-            <%= f.label :クレジットカード %><br/>
-            <%= f.radio_button :payment_methods, :銀行振込 %>
-            <%= f.label :銀行振込 %>
+          <%= f.radio_button :payment_methods, :クレジットカード %>
+          <%= f.label :クレジットカード %><br/>
+          <%= f.radio_button :payment_methods, :銀行振込 %>
+          <%= f.label :銀行振込 %>
         </div>
       <h6 class="mt-3"><strong>お届け先</strong></h6>
         <div class="ml-4">
@@ -28,9 +28,9 @@
             <%= f.hidden_field :total_amounts, value: @sum %>
             <%= f.hidden_field :order_status, value: :入金待ち %>
             <tr><td></td><td><%= f.submit '確認画面へ進む', class:"btn btn-outline-primary" %></td></tr>
-      <% end %>
           </table>
         </div>
+      <% end %>
     </div>
   </div>
 </div>
