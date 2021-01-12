@@ -1,33 +1,33 @@
 <h4><%= @client.last_name+@client.first_name %>さんの会員情報編集画面</h4>
-
+  
     <h6>会員ID</h6>
     <%= @client.id %>
-
+  
   <%= form_with model: @client, url: admin_client_path, local:true do |f| %>
-
+    
       <h6>氏名</h6>
       <%= f.text_field :last_name %><%= f.text_field :first_name %>
-
+    
       <h6>フリガナ</h6>
-
+  
         <%= f.text_field :last_name_kana %>
         <%= f.text_field :first_name_kana %>
-
+    
       <h6>郵便番号</h6>
       <%= f.text_field :postal_code %>
-
+    
       <h6>住所</h6>
       <%= f.text_field :address %>
-
+    
       <h6>電話番号</h6>
       <%= f.text_field :tel %>
-
+    
       <h6>メールアドレス</h6>
       <%= f.text_field :email %>
-
+    
       <h6>会員ステータス</h6>
       <%= f.radio_button :is_unsubscribe_flag, "Available" %><p>有効会員</p>
       <%= f.radio_button :is_unsubscribe_flag, "Invalid" %><p>退会会員</p>
-
+    
     <%= f.submit'変更を保存する' %>
   <% end %>
