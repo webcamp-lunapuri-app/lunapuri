@@ -29,7 +29,12 @@
     <th><%= @client.email %></th>
   </tr>  <tr>
     <th><h6>会員ステータス</h6></th>
-    <th><%= @client.is_unsubscribe_flag %></th>
+    <th><% if @client.is_unsubscribe_flag == "Available" %>
+            有効会員
+        <% elsif @client.is_unsubscribe_flag == "Invalid" %>
+            退会会員
+        <% end %>
+    </th>
   </tr>
   <tr>
     <th><%= link_to '会員情報の編集', edit_admin_client_path(@client.id) %></th>
