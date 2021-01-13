@@ -28,7 +28,7 @@
     </tr>
 </table>
 
-<table>
+<table class="table-sm">
     <thead>
         <tr>
             <th>商品名</th>
@@ -42,9 +42,9 @@
         <% @order_items.each do |order_item| %>
         <tr>
             <th><%= order_item.product.name %></th>
-            <th><%= (order_item.purchase_price).to_i %><span>円</span></th>
+            <th><%= (order_item.purchase_price).to_i.to_s(:delimited) %><span>円</span></th>
             <th><%= order_item.count %></th>
-            <th><%= (order_item.purchase_price.rationalize*order_item.count.rationalize).to_i %><span>円</span></th>
+            <th><%= (order_item.purchase_price.rationalize*order_item.count.rationalize).to_i.to_s(:delimited) %><span>円</span></th>
             <th>
                 <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch, local:true do |f| %>
 
@@ -58,7 +58,7 @@
 <table>
     <tr>
         <th>商品合計</th>
-        <th><%= (@order.total_amounts.rationalize-@order.delivery_charge.rationalize).to_i %><span>円</span></th>
+        <th><%= (@order.total_amounts.rationalize-@order.delivery_charge.rationalize).to_i.to_s(:delimited) %><span>円</span></th>
     </tr>
     <tr>
         <th>送料</th>
@@ -66,7 +66,7 @@
     </tr>
     <tr>
         <th>請求金額合計</th>
-        <th><%= @order.total_amounts %><span>円</span></th>
+        <th><%= @order.total_amounts.to_i.to_s(:delimited) %><span>円</span></th>
     </tr>
 </table>
 
