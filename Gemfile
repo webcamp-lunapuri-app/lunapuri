@@ -74,3 +74,8 @@ gem 'jp_prefecture'
 gem 'kaminari','~> 1.2.1'
 
 gem 'data-confirm-modal'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
