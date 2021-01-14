@@ -1,2 +1,23 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <h5 class="ml-5 mt-4 mb-4">ジャンル編集画面</h5>
+        <%= form_with model: @genre, url: admin_genre_path, local:true do |f| %>
+         <table class="table-sm">
+            <tr>
+              <td><h6>ジャンル名</h6></td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td><h6>有効ステータス</h6></td>
+              <td><%= f.check_box :is_active, {},"true","false" %><span>有効</span></td>
+            </tr>
+              <td></td>
+              <td><%= f.submit '変更を保存', class:"btn btn-success" %></td>
+            <tr>
+            </tr>
+          </table>
+        <% end %>
+    </div>
+  </div>
+</div>

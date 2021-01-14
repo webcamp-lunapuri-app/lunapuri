@@ -1,2 +1,51 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 offset-1">
+    <h5 class="ml-5 mt-5">商品詳細</h5>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4 offset-1">
+      <%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "240x200" %>
+    </div>
+    <div class="col-7">
+      <table class="table-sm">
+        <tr>
+          <td><h6>商品名</h6></td>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <td><h6>商品説明</h6></td>
+          <td><%= @product.introduction %></td>
+        </tr>
+        <tr>
+          <td><h6>ジャンル</h6></td>
+          <td><%= @product.genre.name%></td>
+        </tr>
+        <tr>
+          <td><h6>税抜価格</h6></td>
+          <td><%= @product.price %><span>円</span></td>
+        </tr>
+        <tr>
+          <td><h6>税込価格</h6></td>
+          <td><%= (@product.price.rationalize*1.1r).to_i %><span>円</span></td>
+        </tr>
+        <tr>
+          <td><h6>販売ステータス</h6></td>
+          <td>
+            <% if @product.is_sales_status %>
+              <p class="text-success">販売中</p>
+            <% elsif %>
+              販売停止中
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><td><%= link_to '商品詳細の編集', edit_admin_product_path(@product.id), class:"btn btn-sm btn-outline-success" %></td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

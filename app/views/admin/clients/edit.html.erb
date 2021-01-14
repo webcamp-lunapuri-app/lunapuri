@@ -1,2 +1,32 @@
-<h1>Admin::Clients#edit</h1>
-<p>Find me in app/views/admin/clients/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h4class="ml-5 mt-4 mb-4"><strong><%= @client.last_name+@client.first_name %>さんの会員情報編集画面</strong></h4>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-flex justify-content-start"><strong>会員ID</strong><p><%= @client.id %></p></div>
+              <%= form_with model: @client, url: admin_client_path, local:true do |f| %>
+                <h6>氏名</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :last_name %><%= f.text_field :first_name %></div>
+                <h6>フリガナ</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></div>
+                <h6>郵便番号</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :postal_code %></div>
+                <h6>住所</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :address %></div>
+                <h6>電話番号</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :tel %></div>
+                <h6>メールアドレス</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :email %></div>
+                <h6>会員ステータス</h6>
+                  <div class="d-flex justify-content-start">
+                    <p><%= f.radio_button :is_unsubscribe_flag, "Available" %>有効会員</p>
+                    <p><%= f.radio_button :is_unsubscribe_flag, "Invalid" %>退会会員</p>
+                  </div>
+                <%= f.submit'変更を保存する',class:"btn btn-sm btn-success" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
