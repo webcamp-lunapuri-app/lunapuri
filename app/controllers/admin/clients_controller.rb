@@ -1,6 +1,6 @@
 class Admin::ClientsController < ApplicationController
   def index
-    @clients = Client.page(params[:page]).reverse_order
+    @clients = Client.page(params[:page])
   end
 
   def show
