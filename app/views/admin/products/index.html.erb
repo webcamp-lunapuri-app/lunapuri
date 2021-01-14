@@ -1,8 +1,16 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h4>商品一覧画面</h4>
-      <%= link_to '製品の新規投稿を行う' , new_admin_product_path, class:"btn btn-sm btn-primary" %>
+    <div class="col-7 offset-1">
+      <h5 class="ml-5 mb-3">商品一覧画面</h5>
+    </div>
+    <div class="col-3">
+      <%= link_to '新しい商品を追加する' , new_admin_product_path, class:"btn btn-sm btn-outline-primary" %>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 offset-1">
       <table class="table table-striped">
           <tr>
           <td>商品ID</td>
