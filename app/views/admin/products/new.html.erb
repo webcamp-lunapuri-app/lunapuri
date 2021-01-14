@@ -1,26 +1,41 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h4>商品新規登録</h4>
-        <%= form_with model:@new_product,url: admin_products_path, local:true do |f| %>
-          <h6>商品画像</h6>
-            <div class="d-flex justify-content-start"><%= f.attachment_field :image %></div>
-          <h6>商品名</h6>
-            <div class="d-flex justify-content-start"><%= f.text_field :name %></div>
-          <h6>商品説明</h6>
-            <div class="d-flex justify-content-start"><%= f.text_area :introduction %></div>
-          <h6>ジャンル</h6>
-            <div class="d-flex justify-content-start"><%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %></div>
-          <h6>税抜価格</h6>
-            <div class="d-flex justify-content-start"><%= f.number_field :price %><span>円</span></div>
-          <h6>販売ステータス</h6>
-            <div class="d-flex justify-content-start">
-              <%= f.radio_button :is_sales_status,"true" %><p>販売中</p>
-              <%= f.radio_button :is_sales_status, "false" %><p>販売停止</p>
-            </div>
-          <%= f.submit'新規作成',class:"btn btn-outline-primary" %>
-        <% end %>
-      </div>
+      <h5 class="ml-5 mb-3">商品新規登録</h5>
+      <%= form_with model:@new_product,url: admin_products_path, local:true do |f| %>
+        <table class="table-sm">
+          <tr>
+            <td><h6>商品画像</h6></td>
+            <td><%= f.attachment_field :image %></td>
+          </tr>
+          <tr>
+            <td><h6>商品名</h6></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><h6>商品説明</h6></td>
+            <td><%= f.text_area :introduction %></td>
+          </tr>
+          <tr>
+            <td><h6>ジャンル</h6></td>
+            <td><%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "製品ジャンルを選択してください"}) %></td>
+          </tr>
+          <tr>
+            <td><h6>税抜価格</h6></td>
+            <td><%= f.number_field :price %><span>円</span></td>
+          </tr>
+          <tr>
+            <td><h6>販売ステータス</h6></td>
+            <td>
+              <%= f.radio_button :is_sales_status,"true" %>販売中　<%= f.radio_button :is_sales_status, "false" %>販売停止
+            </td>
+          </tr>
+          <tr>
+            <td></td><td><%= f.submit'新規作成',class:"btn btn-outline-primary" %></td>
+          </tr>
+        </table>
+      <% end %>
     </div>
   </div>
+</div>
 
